@@ -63,6 +63,19 @@ namespace AracTakip.Forms
             txtAd.Text = model.Ad;
             cmbKasaTipi.SelectedItem = Enum.GetName(typeof(KasaTipleri), model.KasaTipi);
             cmbMarka.SelectedItem = DataContext.Markalar.Find(x=>x.Id == model.Marka.Id);
+            
+
+            Func<bool,Marka> SearchMarkaFunc = (bool condition) =>
+            {
+                foreach(var item in DataContext.Markalar)
+                {
+                    if(condition)
+                    {
+                        return item;
+                    }
+                }
+                return null;
+            };
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
